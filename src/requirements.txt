@@ -1,0 +1,6 @@
+glfw
+PyOpenGL
+OpenARB
+OpenGLU
+OpenGLUT
+Openshaders
