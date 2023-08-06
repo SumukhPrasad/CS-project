@@ -37,4 +37,4 @@ def runner():
 
      glEnd()
 
-ds = DisplaySubsystem(512, 512, "hello insanity", runner)
+ds = DisplaySubsystem(512, 512, "inferno", runner)
