@@ -33,6 +33,8 @@ class DisplaySubsystem:
                 self.tick+=1
             except GLError as glex:
                 print(f"GLError{glex.err}: {glex}")
+            except:
+                print("An error has occurred.")
 
             glfw.poll_events()
             glfw.swap_buffers(self.window)
