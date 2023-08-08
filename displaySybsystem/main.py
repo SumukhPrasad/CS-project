@@ -29,7 +29,7 @@ class DisplaySubsystem:
         while not glfw.window_should_close(self.window):
             try:
                 runtimeFunc()
-                self.glut_print(10, 10, f"frame {hex(self.tick)}", 0.0, 0.0, 0.0, 0.0)
+                self.glut_print(10, 10, f"{hex(self.tick)}", 0.0, 0.0, 0.0, 0.0)
                 self.tick+=1
             except GLError as glex:
                 print(f"GLError{glex.err}: {glex}")
