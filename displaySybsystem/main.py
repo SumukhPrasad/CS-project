@@ -30,16 +30,13 @@ class DisplaySubsystem:
         while not glfw.window_should_close(self.window):
             try:
                 runtimeFunc()
-                self.glut_print(10, 90, f"-- DEBUG --", 0.0, 0.0, 0.0, 0.0)
-                self.glut_print(10, 70, f"{hex(self.tick)}", 0.0, 0.0, 0.0, 0.0)
-                self.glut_print(10, 50, f"~{round((time.time() - self._starttime)/self.tick, 3)}s/frame", 0.0, 0.0, 0.0, 0.0)
-                self.glut_print(10, 30, f"~{round(self.tick/(time.time() - self._starttime), 3)}", 0.0, 0.0, 0.0, 0.0)
-                self.glut_print(10, 10, f"Elapsed ~{round(time.time() - self._starttime, 3)}s", 0.0, 0.0, 0.0, 0.0)
+                self.print_debug()
                 self.tick+=1
             except GLError as glex:
                 print(f"GLError{glex.err}: {glex}")
             except Error as e:
                 print("An error has occurred.", e)
+                break
 
             glfw.poll_events()
             glfw.swap_buffers(self.window)
@@ -51,4 +48,11 @@ class DisplaySubsystem:
         for ch in text :
             glutBitmapCharacter( GLUT_BITMAP_9_BY_15, ctypes.c_int( ord(ch) ) )
         glPopMatrix();
+
+    def print_debug(self):
+        self.glut_print(10, 90, f"-- DEBUG --", 0.0, 0.0, 0.0, 0.0)
+        self.glut_print(10, 70, f"{hex(self.tick)}", 0.0, 0.0, 0.0, 0.0)
+        self.glut_print(10, 50, f"~{round((time.time() - self._starttime)/self.tick, 3)}s/frame", 0.0, 0.0, 0.0, 0.0)
+        self.glut_print(10, 30, f"~{round(self.tick/(time.time() - self._starttime), 3)} FPS", 0.0, 0.0, 0.0, 0.0)
+        self.glut_print(10, 10, f"Elapsed ~{round(time.time() - self._starttime, 3)}s", 0.0, 0.0, 0.0, 0.0)
 

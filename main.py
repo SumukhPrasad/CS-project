@@ -7,7 +7,6 @@ from OpenGL.GLU import *
 def runner():
      glClearColor(0.7, 0.75, 0.75, 1)
      glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT)
-
      glMatrixMode (GL_MODELVIEW)
 
      light = (1,1,1)
