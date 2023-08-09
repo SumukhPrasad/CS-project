@@ -2,7 +2,7 @@ import glfw
 from OpenGL.GL import *
 from OpenGL.GLU import *
 from OpenGL.GLUT import *
-
+import time
 
 
 if not glfw.init():
@@ -26,15 +26,20 @@ class DisplaySubsystem:
         gluPerspective(45, 1, 0.1, 50.0)
         glTranslatef(0.0,0.0, -5)
         self.tick = 1
+        self._starttime = time.time()
         while not glfw.window_should_close(self.window):
             try:
                 runtimeFunc()
-                self.glut_print(10, 10, f"{hex(self.tick)}", 0.0, 0.0, 0.0, 0.0)
+                self.glut_print(10, 90, f"-- DEBUG --", 0.0, 0.0, 0.0, 0.0)
+                self.glut_print(10, 70, f"{hex(self.tick)}", 0.0, 0.0, 0.0, 0.0)
+                self.glut_print(10, 50, f"~{round((time.time() - self._starttime)/self.tick, 3)}s/frame", 0.0, 0.0, 0.0, 0.0)
+                self.glut_print(10, 30, f"~{round(self.tick/(time.time() - self._starttime), 3)}", 0.0, 0.0, 0.0, 0.0)
+                self.glut_print(10, 10, f"Elapsed ~{round(time.time() - self._starttime, 3)}s", 0.0, 0.0, 0.0, 0.0)
                 self.tick+=1
             except GLError as glex:
                 print(f"GLError{glex.err}: {glex}")
-            except:
-                print("An error has occurred.")
+            except Error as e:
+                print("An error has occurred.", e)
 
             glfw.poll_events()
             glfw.swap_buffers(self.window)
