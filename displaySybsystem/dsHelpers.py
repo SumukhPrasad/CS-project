@@ -37,5 +37,3 @@ def normal(face):
 samplecmap = matplotlib.cm.get_cmap('Purples')
 def shade(face,light=(1,2,3),color_map=samplecmap):
      return color_map(1 - dot(unit(normal(face)), unit(light)))
-     
-     
