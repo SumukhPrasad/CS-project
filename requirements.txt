@@ -3,3 +3,4 @@ PyOpenGL
 PyGame
 moderngl
 numpy
+PyGLM==2.5.7
