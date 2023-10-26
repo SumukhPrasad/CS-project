@@ -3,6 +3,7 @@ import moderngl as mgl
 import numpy as np
 import sys
 
+
 from models.main import OpenGLModel
 
 class DisplaySubsystem:
@@ -27,7 +28,7 @@ class DisplaySubsystem:
 
      def poll_events(self):
           for event in pg.event.get():
-               if event.type==pg.QUIT or (event.type==pg.KEYDOWN and event.key==pg.K_ESCAPE):
+               if event.type==pg.QUIT:
                     self.scene.destroy()
                     pg.quit()
                     sys.exit()
