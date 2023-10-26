@@ -1,8 +1,5 @@
 glfw
 PyOpenGL
-OpenARB
-OpenGLU
-OpenGLUT
-Openshaders
-vectors
+PyGame
 moderngl
+numpy
