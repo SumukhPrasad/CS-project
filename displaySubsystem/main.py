@@ -2,10 +2,11 @@ import pygame as pg
 import moderngl as mgl
 import numpy as np
 import sys
-
+import time
 
 from models.main import OpenGLModel
 from displaySubsystem.camera import CameraSubsystem
+from displaySubsystem.light import Light
 
 
 class DisplaySubsystem:
@@ -21,12 +22,17 @@ class DisplaySubsystem:
           pg.display.set_caption(winTitle)
           pg.display.set_icon(pg.image.load(f'res/window_icons/{winIcon}.png'))
 
+          #pg.event.set_grab(True)
+          pg.mouse.set_cursor(pg.SYSTEM_CURSOR_CROSSHAIR)
+
           self.ctx = mgl.create_context()
           self.ctx.enable(flags=mgl.DEPTH_TEST | mgl.CULL_FACE)
           self.clock = pg.time.Clock()
           self.time = 0
+          self.delta_time = 0
 
           self.camera = CameraSubsystem(self)
+          self.light = Light()
           self.scene = OpenGLModel(self, 'default')
 
      def poll_events(self):
@@ -48,6 +54,7 @@ class DisplaySubsystem:
           while True:
                self.set_time()
                self.poll_events()
+               self.camera.update()
                self.render()
-               self.clock.tick(60)
+               self.delta_time = self.clock.tick(60)
 

@@ -23,24 +23,31 @@ class OpenGLModel:
      
      def get_texture(self):
            texture=pg.image.load(f'models/textures/{self.name}.png').convert()
-           texture = pg.transform.flip(texture, flip_x=False, flip_y=True) # correct Y-axis
+           texture = pg.transform.flip(texture, flip_x=False, flip_y=True) # correct filpped Y-axis from pygame
            texture = self.ctx.texture(size=texture.get_size(), components=3, data=pg.image.tostring(texture, 'RGB'))
            return texture
 
      def initialize(self):
           self.shader_program['u_texture_0'] = 0
-          self.texture.use()
+          self.texture.use(location=0)
 
           self.shader_program['m_proj'].write(self.ds.camera.m_proj)
           self.shader_program['m_view'].write(self.ds.camera.m_view)
           self.shader_program['m_model'].write(self.m_model)
+          
+          self.shader_program['light.position'].write(self.ds.light.position)
+          self.shader_program['light.Ia'].write(self.ds.light.intensities["ambient"])
+          self.shader_program['light.Id'].write(self.ds.light.intensities["diffuse"])
+          self.shader_program['light.Is'].write(self.ds.light.intensities["specular"])
 
      def update(self):
           m_model = glm.rotate(self.m_model, self.ds.time, glm.vec3(0,1,0))
           self.shader_program['m_model'].write(m_model)
+          self.shader_program['m_view'].write(self.ds.camera.m_view)
+          self. shader_program['camPos'].write(self.ds.camera.position)
 
      def get_vertex_array_object(self):
-          vertex_array_object = self.ctx.vertex_array(self.shader_program, [(self.vertex_buffer_object, '2f 3f', 'in_texcoord_0', 'in_position')])
+          vertex_array_object = self.ctx.vertex_array(self.shader_program, [(self.vertex_buffer_object, '2f 3f 3f', 'in_texcoord_0', 'in_normal', 'in_position')])
           return vertex_array_object
      
      def render(self):
@@ -72,6 +79,19 @@ class OpenGLModel:
                                (0,2,3),(0,1,2),
                                (3,1,2),(3,0,1)]
           tex_coord_data = self.generate_vertex_data(tex_coord, tex_coord_indices)
+
+          normals = [
+               (0,0,1)*6,
+               (1,0,0)*6,
+               (0,0,-1)*6,
+               (-1,0,0)*6,
+               (0,1,0)*6,
+               (0,-1,0)*6
+          ]
+
+          normals = np.array(normals, dtype='f4').reshape(36,3)
+          vertex_data=np.hstack([normals, vertex_data])
+
           vertex_data = np.hstack([tex_coord_data, vertex_data])
 
           return vertex_data
