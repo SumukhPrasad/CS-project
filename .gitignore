@@ -1,2 +1,4 @@
 displaySubsystem/__pycache__
 __pycache__
+displaySubsystem/**/*.json
+displaySubsystem/**/*.bin
