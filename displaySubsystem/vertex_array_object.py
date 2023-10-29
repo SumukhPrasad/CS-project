@@ -9,15 +9,24 @@ class VertexArrayObject:
         self.program = ShaderProgram(ctx)
         self.vertex_array_objects = {}
 
-        # cat vertex_array_object
-        self.vertex_array_objects['cat'] = self.get_vertex_array_object(
+        self.vertex_array_objects['grid'] = self.get_vertex_array_object(
             program=self.program.programs['default'],
-            vertex_buffer_object=self.vertex_buffer_object.vertex_buffer_objects['cat'])
+            vertex_buffer_object=self.vertex_buffer_object.vertex_buffer_objects['grid'])
+        
 
-        # shadow cat vertex_array_object
-        self.vertex_array_objects['shadow_cat'] = self.get_vertex_array_object(
+        self.vertex_array_objects['shadow_grid'] = self.get_vertex_array_object(
             program=self.program.programs['shadow_map'],
-            vertex_buffer_object=self.vertex_buffer_object.vertex_buffer_objects['cat'])
+            vertex_buffer_object=self.vertex_buffer_object.vertex_buffer_objects['grid'])
+
+        # vertex_array_object
+        self.vertex_array_objects['monkey'] = self.get_vertex_array_object(
+            program=self.program.programs['default'],
+            vertex_buffer_object=self.vertex_buffer_object.vertex_buffer_objects['monkey'])
+
+        # shadow vertex_array_object
+        self.vertex_array_objects['shadow_monkey'] = self.get_vertex_array_object(
+            program=self.program.programs['shadow_map'],
+            vertex_buffer_object=self.vertex_buffer_object.vertex_buffer_objects['monkey'])
 
     def get_vertex_array_object(self, program, vertex_buffer_object):
         vertex_array_object = self.ctx.vertex_array(program, [(vertex_buffer_object.vertex_buffer_object, vertex_buffer_object.format, *vertex_buffer_object.attribs)], skip_errors=True)

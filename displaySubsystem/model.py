@@ -83,6 +83,10 @@ class ExtendedBaseModel(BaseModel):
 
 
 class ObjectModel(ExtendedBaseModel):
-    def __init__(self, ds, vertex_array_object_name='cat', tex_id='cat',
+    def __init__(self, ds, vertex_array_object_name='def', tex_id='def',
                  pos=(0, 0, 0), rot=(-90, 0, 0), scale=(1, 1, 1)):
         super().__init__(ds, vertex_array_object_name, tex_id, pos, rot, scale)
+
+    def update(self):
+        self.m_model = self.get_model_matrix()
+        super().update()

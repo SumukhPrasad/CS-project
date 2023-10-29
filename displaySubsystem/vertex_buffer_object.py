@@ -6,7 +6,8 @@ import pywavefront
 class VertexBufferObject:
     def __init__(self, ctx):
         self.vertex_buffer_objects = {}
-        self.vertex_buffer_objects['cat'] = ObjectModelVertexBufferObject(ctx)
+        self.vertex_buffer_objects['monkey'] = ObjectModelVertexBufferObject(ctx, 'displaySubsystem/objects/blendermonkey/monkey.obj')
+        self.vertex_buffer_objects['grid'] = ObjectModelVertexBufferObject(ctx, 'displaySubsystem/objects/board/board.obj')
 
     def destroy(self):
         [vertex_buffer_object.destroy() for vertex_buffer_object in self.vertex_buffer_objects.values()]
@@ -17,6 +18,7 @@ class BaseVertexBufferObject:
         self.ctx = ctx
         self.vertex_buffer_object = self.get_vertex_buffer_object()
         self.format: str = None
+        self.path: str = None
         self.attribs: list = None
 
     def get_vertex_data(self): ...
@@ -31,13 +33,14 @@ class BaseVertexBufferObject:
 
 
 class ObjectModelVertexBufferObject(BaseVertexBufferObject):
-    def __init__(self, ds):
+    def __init__(self, ds, pathtoobj):
+        self.path = pathtoobj
         super().__init__(ds)
         self.format = '2f 3f 3f'
         self.attribs = ['in_texcoord_0', 'in_normal', 'in_position']
 
     def get_vertex_data(self):
-        objs = pywavefront.Wavefront('displaySubsystem/objects/blendermonkey/monkey.obj', cache=True, parse=True)
+        objs = pywavefront.Wavefront(self.path, cache=True, parse=True)
         obj = objs.materials.popitem()[1]
         vertex_data = obj.vertices
         vertex_data = np.array(vertex_data, dtype='f4')

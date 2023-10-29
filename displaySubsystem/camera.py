@@ -9,7 +9,7 @@ SPEED = 0.01
 SENSITIVITY = 0.1
 
 class Camera:
-     def __init__(self, ds, position=(0, 0, 4), yaw=-90, pitch=0):
+     def __init__(self, ds, position=(0, 5, 4), yaw=-90, pitch=-30):
           self.ds = ds
           self.aspect_ratio = ds.WINDOW_SIZE[0] / ds.WINDOW_SIZE[1]
           self.position = glm.vec3(position)
@@ -37,7 +37,7 @@ class Camera:
                |  /   .
                | /    .
                |/yaw  .
-              ‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾ xy-plane  
+              ‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾ xy-plane (x)
               forward.x = cos(yaw)
               forward.z = sin(yaw)
 
@@ -49,7 +49,7 @@ class Camera:
                |  /   .
                | /    .
                |/pitch.
-              ‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾ xz-plane 
+              ‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾ xz-plane
               forward.x = cos(pitch)
               forward.y = sin(pitch)
               forward.z = cos(pitch)
