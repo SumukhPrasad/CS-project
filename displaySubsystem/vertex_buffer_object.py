@@ -7,7 +7,7 @@ class VertexBufferObject:
     def __init__(self, ctx):
         self.vertex_buffer_objects = {}
         self.vertex_buffer_objects['monkey'] = ObjectModelVertexBufferObject(ctx, 'displaySubsystem/objects/blendermonkey/monkey.obj')
-        self.vertex_buffer_objects['grid'] = ObjectModelVertexBufferObject(ctx, 'displaySubsystem/objects/board/board.obj')
+        self.vertex_buffer_objects['board'] = ObjectModelVertexBufferObject(ctx, 'displaySubsystem/objects/gameboard/model.obj')
 
     def destroy(self):
         [vertex_buffer_object.destroy() for vertex_buffer_object in self.vertex_buffer_objects.values()]

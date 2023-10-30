@@ -9,14 +9,14 @@ class VertexArrayObject:
         self.program = ShaderProgram(ctx)
         self.vertex_array_objects = {}
 
-        self.vertex_array_objects['grid'] = self.get_vertex_array_object(
+        self.vertex_array_objects['board'] = self.get_vertex_array_object(
             program=self.program.programs['default'],
-            vertex_buffer_object=self.vertex_buffer_object.vertex_buffer_objects['grid'])
+            vertex_buffer_object=self.vertex_buffer_object.vertex_buffer_objects['board'])
         
 
-        self.vertex_array_objects['shadow_grid'] = self.get_vertex_array_object(
+        self.vertex_array_objects['shadow_board'] = self.get_vertex_array_object(
             program=self.program.programs['shadow_map'],
-            vertex_buffer_object=self.vertex_buffer_object.vertex_buffer_objects['grid'])
+            vertex_buffer_object=self.vertex_buffer_object.vertex_buffer_objects['board'])
 
         # vertex_array_object
         self.vertex_array_objects['monkey'] = self.get_vertex_array_object(
