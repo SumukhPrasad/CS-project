@@ -11,13 +11,13 @@ class Scene:
     def load(self):
         ds = self.ds
         add = self.add_object
-
-        # cat
-        self.monkey = ObjectModel(ds, vertex_array_object_name="monkey", tex_id="monkey", pos=(0, -1, -10))
-        add(self.monkey)
+        
+        # self.monkey = ObjectModel(ds, vertex_array_object_name="monkey", tex_id="monkey", pos=(0, -1, -10))
+        # add(self.monkey)
         
         self.board = ObjectModel(ds, vertex_array_object_name="board", tex_id="board", pos=(0, -1, -10))
         add(self.board)
 
     def update(self):
-       self.monkey.rot.xyz = self.ds.time
+       pass
+        #self.monkey.rot.xyz = self.ds.time

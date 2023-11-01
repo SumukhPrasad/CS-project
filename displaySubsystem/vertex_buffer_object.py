@@ -6,7 +6,7 @@ import pywavefront
 class VertexBufferObject:
     def __init__(self, ctx):
         self.vertex_buffer_objects = {}
-        self.vertex_buffer_objects['monkey'] = ObjectModelVertexBufferObject(ctx, 'displaySubsystem/objects/blendermonkey/monkey.obj')
+        # self.vertex_buffer_objects['monkey'] = ObjectModelVertexBufferObject(ctx, 'displaySubsystem/objects/blendermonkey/monkey.obj')
         self.vertex_buffer_objects['board'] = ObjectModelVertexBufferObject(ctx, 'displaySubsystem/objects/gameboard/model.obj')
 
     def destroy(self):
