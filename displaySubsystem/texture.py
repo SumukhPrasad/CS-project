@@ -8,7 +8,6 @@ class Texture:
         self.ds = ds
         self.ctx = ds.ctx
         self.textures = {}
-        #self.textures['monkey'] = self.get_texture(path='displaySubsystem/objects/deftext.png')
         self.textures['board'] = self.get_texture(path='displaySubsystem/objects/gameboard/texture.png')
         self.textures['depth_texture'] = self.get_depth_texture()
 
@@ -20,7 +19,6 @@ class Texture:
 
     def get_texture_cube(self, dir_path, ext='png'):
         faces = ['right', 'left', 'top', 'bottom'] + ['front', 'back'][::-1]
-        # textures = [pg.image.load(dir_path + f'{face}.{ext}').convert() for face in faces]
         textures = []
         for face in faces:
             texture = pg.image.load(dir_path + f'{face}.{ext}').convert()
