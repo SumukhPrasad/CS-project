@@ -7,6 +7,7 @@ class VertexBufferObject:
     def __init__(self, ctx):
         self.vertex_buffer_objects = {}
         self.vertex_buffer_objects['board'] = ObjectModelVertexBufferObject(ctx, 'displaySubsystem/objects/gameboard/model.obj')
+        self.vertex_buffer_objects['piece'] = ObjectModelVertexBufferObject(ctx, 'displaySubsystem/objects/piece/piece.obj')
 
     def destroy(self):
         [vertex_buffer_object.destroy() for vertex_buffer_object in self.vertex_buffer_objects.values()]

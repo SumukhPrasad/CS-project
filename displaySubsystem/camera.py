@@ -9,7 +9,7 @@ SPEED = 0.01
 SENSITIVITY = 0.1
 
 class Camera:
-     def __init__(self, ds, position=(0, 12, 12), yaw=-90, pitch=-30):
+     def __init__(self, ds, position=(0, 12, 12*1.732), yaw=-90, pitch=-30):
           self.ds = ds
           self.aspect_ratio = ds.WINDOW_SIZE[0] / ds.WINDOW_SIZE[1]
           self.position = glm.vec3(position)
@@ -27,7 +27,7 @@ class Camera:
           rel_x, rel_y = pg.mouse.get_rel()
           self.yaw += rel_x * SENSITIVITY
           self.pitch -= rel_y * SENSITIVITY
-          self.pitch = max(-179, min(179, self.pitch))
+          self.pitch = max(-89, min(89, self.pitch))
           '''
                z
                |      forward

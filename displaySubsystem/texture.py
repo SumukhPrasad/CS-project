@@ -9,6 +9,7 @@ class Texture:
         self.ctx = ds.ctx
         self.textures = {}
         self.textures['board'] = self.get_texture(path='displaySubsystem/objects/gameboard/texture.png')
+        self.textures['piece'] = self.get_texture(path='displaySubsystem/objects/piece/texture.png')
         self.textures['depth_texture'] = self.get_depth_texture()
 
     def get_depth_texture(self):
