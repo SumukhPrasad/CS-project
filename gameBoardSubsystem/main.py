@@ -1,0 +1,6 @@
+from dbSubsystem.main import dbSubsystem
+
+class gameBoard:
+     def __init__(self, name): ...
+
+     def save(self): ...
