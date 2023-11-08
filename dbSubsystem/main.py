@@ -5,7 +5,9 @@ class dbSubsystem:
           self.basedb = BaseDB()
 
      def saveGame(self, gameboard, name):
-          self.basedb.executesql(f'INSERT INTO games(name, game) VALUES (\'{name}\', \'{''.join(str(element) for row in gameboard for element in row)}\')')
+          if self.retrieveGame(name):
+               self.basedb.executesql(f'DELETE FROM games WHERE name=\'{name}\'')
+          self.basedb.executesql(f"INSERT INTO games(name, game) VALUES ('{name}', '{''.join(str(element) for row in gameboard for element in row)}')")
 
      def retrieveGame(self, name):
           q=self.basedb.executesql(f'SELECT name, game FROM games WHERE name=\'{name}\' LIMIT 0, 1')

@@ -6,3 +6,4 @@ numpy
 PyGLM==2.5.7
 PyWavefront
 mysql-connector-python
+pysimplegui
