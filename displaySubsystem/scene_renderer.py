@@ -12,12 +12,14 @@ class SceneRenderer:
         self.depth_fbo.clear()
         self.depth_fbo.use()
         for obj in self.scene.objects:
-            obj.render_shadow()
+            if obj!=None:
+                obj.render_shadow()
 
     def main_render(self):
         self.ds.ctx.screen.use()
         for obj in self.scene.objects:
-            obj.render()
+            if obj!=None:
+                obj.render()
 
     def render(self):
         self.scene.update()

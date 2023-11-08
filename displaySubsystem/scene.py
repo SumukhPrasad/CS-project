@@ -20,7 +20,10 @@ class Scene:
         for i in range(7):
             self.pieces.append([])
             for j in range(8):
-                self.pieces[i].append(ObjectModel(ds, vertex_array_object_name="piece", tex_id="piece", pos=(-6+( j*(12.1/8 + 0.225) ), 0.2, -5.95+( i*(10.3/7 + 0.225) )))) # (x, z, y)
+                if self.ds.gb.board[i][j]:
+                    self.pieces[i].append(ObjectModel(ds, vertex_array_object_name="piece", tex_id="piece", pos=(-6+( j*(12.1/8 + 0.225) ), 0.2, -5.95+( i*(10.3/7 + 0.225) )))) # (x, z, y)
+                else:
+                    self.pieces[i].append(None)
                 '''
                           _ -5.95
                           |

@@ -10,7 +10,7 @@ from displaySubsystem.scene_renderer import SceneRenderer
 
 
 class DisplaySubsystem:
-	def __init__(self, winH, winW, winTitle, winIcon):
+	def __init__(self, winH, winW, winTitle, winIcon, gb):
 		pg.init()
 
 		# OpenGL/Pygame configuration
@@ -19,6 +19,8 @@ class DisplaySubsystem:
 		pg.display.gl_set_attribute(pg.GL_CONTEXT_MINOR_VERSION, 3)
 		pg.display.gl_set_attribute(pg.GL_CONTEXT_PROFILE_MASK, pg.GL_CONTEXT_PROFILE_CORE)
 		pg.display.set_mode(self.WINDOW_SIZE, flags=pg.OPENGL | pg.DOUBLEBUF)
+
+		self.gb=gb
 
 		# Window configuration
 		pg.display.set_caption(winTitle)
