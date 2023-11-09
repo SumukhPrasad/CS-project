@@ -45,6 +45,7 @@ class DisplaySubsystem:
 		self.scene = Scene(self)
 		# Renderer
 		self.scene_renderer = SceneRenderer(self)
+		self.previous_time=0
 
 	def check_events(self):
 		for event in pg.event.get():
@@ -72,3 +73,6 @@ class DisplaySubsystem:
 			self.camera.update()
 			self.render()
 			self.delta_time = self.clock.tick(60)
+			if int(self.time)-self.previous_time>0.5:
+				self.previous_time=int(self.time)
+				self.gb.update()

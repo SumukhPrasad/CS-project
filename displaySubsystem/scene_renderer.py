@@ -15,11 +15,21 @@ class SceneRenderer:
             if obj!=None:
                 obj.render_shadow()
 
+        for i in self.scene.pieces:
+            for obj in i:
+                if obj!=None:
+                    obj.render()
+
     def main_render(self):
         self.ds.ctx.screen.use()
         for obj in self.scene.objects:
             if obj!=None:
                 obj.render()
+
+        for i in self.scene.pieces:
+            for obj in i:
+                if obj!=None:
+                    obj.render()
 
     def render(self):
         self.scene.update()
