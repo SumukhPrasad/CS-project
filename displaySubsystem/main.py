@@ -67,6 +67,7 @@ class DisplaySubsystem:
 		self.time = pg.time.get_ticks() * 0.001
 
 	def run(self):
+		print('DisplaySubsystem running...')
 		while True:
 			self.get_time()
 			self.check_events()
