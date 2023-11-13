@@ -8,12 +8,14 @@ class dbSubsystem:
           if self.retrieveGame(name):
                self.basedb.executesql(f'DELETE FROM games WHERE name=\'{name}\'')
           self.basedb.executesql(f"INSERT INTO games(name, game) VALUES ('{name}', '{''.join(str(element) for row in gameboard for element in row)}')")
+          print(f"Game '{name}' saved to DB.")
 
      def retrieveGame(self, name):
           q=self.basedb.executesql(f'SELECT name, game FROM games WHERE name=\'{name}\' LIMIT 0, 1')
           if len(q)==0:
                return False
           c=q[0]
+          print(f"Game '{name}' retrieved from DB.")
           return [list(map(int, list(c[1][i:i+8]))) for i in range(0, len(c[1]), 8)]
 
 
